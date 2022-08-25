@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
 
     def show
         course = Course.find(params[:id])
-        render json: course, serializer: CoursesWithUsersSerializer
+        render json: course, serializer: CourseSerializer
     end
 
 

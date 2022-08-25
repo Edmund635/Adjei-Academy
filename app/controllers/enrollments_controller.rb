@@ -2,7 +2,7 @@ class EnrollmentsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_errors
     def create
         enrollment = Enrollment.create!(created_params)
-        render json: app, status: :created
+        render json: enrollment, status: :created
     end
 
 

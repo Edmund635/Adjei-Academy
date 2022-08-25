@@ -6,7 +6,7 @@ class CreateContactInfos < ActiveRecord::Migration[6.1]
       t.string :first_name
       t.string :email
       t.string :city
-      t.integer :phone_number
+      t.string :phone_number
       t.integer :age
 
 
