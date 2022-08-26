@@ -1,6 +1,5 @@
 class ContactInfosController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_errors
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_error
+    before_action :is_authorized?, only: [:create, :update, :destroy]
     def create
         contactInfo = ContactInfo.create!(created_params)
         render json: contactInfo, status: :created
@@ -31,13 +30,5 @@ class ContactInfosController < ApplicationController
     private
     def created_params
         params.permit(:last_name, :first_name, :email, :city, :phone_number, :age, :user_id)
-    end
-
-    def render_not_found_error
-        render json: {error: "Not found"}, status: 404
-    end
-
-    def render_unprocessable_errors(exception)
-        render json: { errors: [exception.message] }, status: :unprocessable_entity
     end
 end

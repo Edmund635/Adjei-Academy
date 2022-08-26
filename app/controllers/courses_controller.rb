@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+    skip_before_action :authorize_user
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_error
     def index
         render json: Course.all
