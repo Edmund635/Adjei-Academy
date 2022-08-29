@@ -5,7 +5,7 @@ function CourseContainer({courses}) {
 
     return (
      <div>
-         <div>
+         <div className="courseContainer">
              {courses.map(course => <CourseCard  key={course.id} course={course}  />)}
          </div>
      </div>

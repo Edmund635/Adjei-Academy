@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation({ updateUser, currentUser }) {
 
@@ -11,30 +10,24 @@ function Navigation({ updateUser, currentUser }) {
   };
 
   return (
-    <header>
-    <nav>
-      <div>
-        <button onClick={handleLogOut}>Log Out</button>
-          <ul>
-            <li>
-              {currentUser ? <Link to={`/users/${currentUser.id}`}>Account</Link> : null }
-            </li>
-            <li>
-              <Link to="/users/new">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/contact_info/new"> Contact Information</Link>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-      </div>
-    </nav>
-    </header>
+      <header className="headerbackground">
+        <nav>
+          <div className="navbar">
+            {currentUser ? <NavLink exact className = "button" to={`/users/${currentUser.id}`}>Account</NavLink> : null }
+            <NavLink exact className="button" to="/">
+              Home
+            </NavLink>
+            <NavLink exact className="button" to="/users/new">
+              SignUp
+            </NavLink>
+            <NavLink exact className="button" to="/login">
+              Login
+            </NavLink>
+            {currentUser ? <NavLink exact className="button" to="/contact_info/new"> Contact Information </NavLink> : null }
+            {currentUser ? <button onClick={handleLogOut}>Log Out</button> : null}
+          </div>
+        </nav>
+      </header>
   );
 }
 

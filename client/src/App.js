@@ -6,6 +6,7 @@ import UserPage from './UserPage';
 import SignUp from './SignUp';
 import Login from './Login'
 import Navigation from './Navigation'
+import CourseDetails from './Course Details';
 
 
 function App() {
@@ -48,9 +49,8 @@ function App() {
 
   return (
     <>
-    <Navigation updateUser={updateUser} currentUser={currentUser}/>
+      <Navigation updateUser={updateUser} currentUser={currentUser}/>
       <Switch>
-
       <Route exact path='/users/new'>
         <SignUp updateUser={updateUser}/>
       </Route>
@@ -68,6 +68,12 @@ function App() {
         <Home courses={courses}/>
       </Route>
 
+      <Route exact path="/courses/:id">
+          <CourseDetails />
+      </Route>
+      <Route exact path="/contact_info/new">
+
+      </Route>
       {/* <Route>
         <NotFound />
       </Route> */}

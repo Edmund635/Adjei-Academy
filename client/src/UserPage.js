@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
-function UserPage({updatedUser}){
+function UserPage({updateUser}){
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(false)
@@ -14,6 +14,7 @@ function UserPage({updatedUser}){
             if(res.ok){
                 res.json().then(user => {
                     setUser(user)
+                    updateUser(user)
                     setLoading(false)
                 })
             }else {
@@ -27,7 +28,7 @@ function UserPage({updatedUser}){
     if(errors) return <h1>{errors}</h1>
     return (
         <div>
-            <h1>{user.username}</h1>
+            <h2>Welcome to Adjei Academy, <br></br> {user.username}</h2>
             <h3>Courses</h3>
             <ul>
                 {user.courses.map(course => (
