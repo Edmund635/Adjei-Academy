@@ -16,6 +16,11 @@ code {
   width: 100%;
 }
 
+.signup{
+  text-align: center;
+  position: relative;
+}
+
 .navbar {
   width: 100%;
   display: flex;

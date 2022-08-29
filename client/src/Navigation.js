@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
+import {useHistory} from 'react-router-dom';
+
 
 function Navigation({ updateUser, currentUser }) {
+  const history = useHistory()
+
 
   const handleLogOut = () => {
     fetch('/logout',{
       method:'DELETE'  
     })
     updateUser(false);
+    history.push("/");
   };
 
   return (
@@ -23,7 +28,7 @@ function Navigation({ updateUser, currentUser }) {
             <NavLink exact className="button" to="/login">
               Login
             </NavLink>
-            {currentUser ? <NavLink exact className="button" to="/contact_info/new"> Contact Information </NavLink> : null }
+            {currentUser ? <NavLink exact className="button" to= {`/contact_info/new`}> Contact Information </NavLink> : null }
             {currentUser ? <button onClick={handleLogOut}>Log Out</button> : null}
           </div>
         </nav>

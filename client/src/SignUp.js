@@ -28,9 +28,11 @@ function SignUp({updateUser}) {
                 res.json().then(user => {
                     updateUser(user)
                     history.push(`/users/${user.id}`)
-                })
-            }else {
-                res.json().then(json => setErrors(Object.entries(json.errors)))
+            })
+            }
+            else 
+            {
+                res.json().then(json => setErrors(json.errors))
             }
         })
        
@@ -42,21 +44,21 @@ function SignUp({updateUser}) {
       }
     return (
         <> 
-        <form onSubmit={onSubmit}>
+        <form className='signup' onSubmit={onSubmit}>
         <label>
-          Username
-          </label>  
-          <input type='text' name='username' value={username} onChange={handleChange} />
+            Username
+        </label>
+        <input type='text' name='username' value={username} onChange={handleChange} />
        
         <label>
-         Password
-         </label>
+            Password
+        </label>
         <input type='password' name='password' value={password} onChange={handleChange} />
         
        
         <input type='submit' value='Sign up!' />
-      </form>
-      {errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null}
+        </form>
+        {errors ? <div>{errors}</div> :null}
         </>
     )
 }

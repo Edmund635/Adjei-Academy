@@ -1,5 +1,5 @@
 class ContactInfosController < ApplicationController
-    before_action :is_authorized?, only: [:create, :update, :destroy]
+    skip_before_action :is_authorized?, only: [:create]
     def create
         contactInfo = ContactInfo.create!(created_params)
         render json: contactInfo, status: :created

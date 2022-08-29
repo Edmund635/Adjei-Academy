@@ -7,6 +7,7 @@ import SignUp from './SignUp';
 import Login from './Login'
 import Navigation from './Navigation'
 import CourseDetails from './Course Details';
+import ContactInfo from './ContactInfo';
 
 
 function App() {
@@ -72,7 +73,7 @@ function App() {
           <CourseDetails />
       </Route>
       <Route exact path="/contact_info/new">
-
+        <ContactInfo currentUser={currentUser}/>
       </Route>
       {/* <Route>
         <NotFound />

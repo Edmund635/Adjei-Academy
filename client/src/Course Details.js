@@ -28,11 +28,12 @@ function CourseDetails() {
 
 
     const { description, instructor  } = course
-
     return(
         <div className="card">
             <p>Course Description: {description}</p>
             <p>Course Instructor: {instructor}</p>
+            <p>Students Enrolled: {course.users.length}</p>
+            <p> Maximum # of students: 25 </p>
         </div>
     );
 }
