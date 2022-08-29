@@ -18,6 +18,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        if current_user
+            current_user.destroy
+            head :no_content
+        else
+            render json: { errors: "No active session" }, status: :unauthorized
+        end
+    end
 
     private
 

@@ -1,25 +1,80 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import Home from './Home'
+import UserPage from './UserPage';
+import SignUp from './SignUp';
+import Login from './Login'
+import Navigation from './Navigation'
+
 
 function App() {
+  const [courses, setCourses] = useState([])
+  const [errors, setErrors] = useState(false)
+  const [currentUser, setCurrentUser] = useState(false)
+
+  useEffect(() => {
+    fetchCourses()
+  },[])
+
+  const fetchCourses = () => {
+    fetch('/courses')
+    .then(res => {
+      if(res.ok){
+        res.json().then(courseData => setCourses(courseData))
+      }else {
+        res.json().then(data => setErrors(data.error))
+      }
+    })
+  }
+
+  // const addProduction = (production) => setProductions(current => [...current,production])
+
+  // const updateProduction = (updatedProduction) => setProductions(current => {
+  //   return current.map(production => {
+  //    if(production.id === updatedProduction.id){
+  //      return updatedProduction
+  //    } else {
+  //      return production
+  //    }
+  //   })
+  // })
+
+  // const deleteProduction = (id) => setProductions(current => current.filter(p => p.id !== id)) 
+
+  const updateUser = (user) => setCurrentUser(user)
+  if(errors) return <h1>{errors}</h1>
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <Navigation updateUser={updateUser} currentUser={currentUser}/>
+      <Switch>
+
+      <Route exact path='/users/new'>
+        <SignUp updateUser={updateUser}/>
+      </Route>
+
+      <Route path='/users/:id'>
+        <UserPage updateUser={updateUser}/>
+      </Route>
+
+      <Route path='/login'>
+        <Login updateUser={updateUser}/>
+      </Route>
+
+    
+      <Route exact path='/'>
+        <Home courses={courses}/>
+      </Route>
+
+      {/* <Route>
+        <NotFound />
+      </Route> */}
+      
+      </Switch>
+    </>
+  )
 }
 
-export default App;
+export default App
