@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
+
 function UserPage({updateUser}){
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
@@ -9,7 +10,7 @@ function UserPage({updateUser}){
     const {id} = params
 
     useEffect(()=>{
-        fetch(`/users/${id}`)
+        fetch(`/me`)
         .then(res => {
             if(res.ok){
                 res.json().then(user => {
@@ -29,7 +30,7 @@ function UserPage({updateUser}){
     return (
         <div>
             <h2>Welcome to Adjei Academy, <br></br> {user.username}</h2>
-            <h3>Courses</h3>
+            <h3>Courses Enrolled In</h3>
             <ul>
                 {user.courses.map(course => (
                 <li>

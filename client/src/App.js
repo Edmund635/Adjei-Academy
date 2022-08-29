@@ -8,6 +8,7 @@ import Login from './Login'
 import Navigation from './Navigation'
 import CourseDetails from './Course Details';
 import ContactInfo from './ContactInfo';
+import EditContactInfo from './EditContactInfo';
 
 
 function App() {
@@ -30,19 +31,6 @@ function App() {
     })
   }
 
-  // const addProduction = (production) => setProductions(current => [...current,production])
-
-  // const updateProduction = (updatedProduction) => setProductions(current => {
-  //   return current.map(production => {
-  //    if(production.id === updatedProduction.id){
-  //      return updatedProduction
-  //    } else {
-  //      return production
-  //    }
-  //   })
-  // })
-
-  // const deleteProduction = (id) => setProductions(current => current.filter(p => p.id !== id)) 
 
   const updateUser = (user) => setCurrentUser(user)
   if(errors) return <h1>{errors}</h1>
@@ -70,15 +58,15 @@ function App() {
       </Route>
 
       <Route exact path="/courses/:id">
-          <CourseDetails />
+        <CourseDetails />
       </Route>
       <Route exact path="/contact_info/new">
         <ContactInfo currentUser={currentUser}/>
       </Route>
-      {/* <Route>
-        <NotFound />
-      </Route> */}
-      
+
+      <Route exact path="/:id/contact_info">
+        <EditContactInfo currentUser={currentUser}/>
+      </Route>
       </Switch>
     </>
   )

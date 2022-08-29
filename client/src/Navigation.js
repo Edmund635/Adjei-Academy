@@ -20,7 +20,7 @@ function Navigation({ updateUser, currentUser }) {
           <div className="navbar">
             {currentUser ? <NavLink exact className = "button" to={`/users/${currentUser.id}`}>Account</NavLink> : null }
             <NavLink exact className="button" to="/">
-              Home
+              Courses
             </NavLink>
             <NavLink exact className="button" to="/users/new">
               SignUp

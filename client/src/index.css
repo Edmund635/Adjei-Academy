@@ -47,7 +47,7 @@ code {
 
 .courseContainer {
   display:flex;
-  flex-direction:row;
+  flex-direction: column;
   justify-content: flex-start;
   font-family:Arial, sans-serif;
   margin:10px;
